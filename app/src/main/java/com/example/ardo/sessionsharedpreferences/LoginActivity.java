@@ -1,12 +1,16 @@
 package com.example.ardo.sessionsharedpreferences;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,6 +22,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button loginButton;
     private EditText emailText, passwordText;
+
+    private SharedPreference sharedPreference;
+    Activity context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +61,13 @@ public class LoginActivity extends AppCompatActivity {
 
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(emailText.getWindowToken(), 0);
+
+        // Save the text in SharedPreference
+        sharedPreference.save(context, email);
+        Toast.makeText(context, getResources().getString(R.string.saved), Toast.LENGTH_LONG).show();
 
         // TODO : Implement your own authenticating logic here
 

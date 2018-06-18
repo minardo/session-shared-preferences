@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SessionSharedPreferences</string>
+    <string name="saved">Sudah di simpan di SharedPreferences.</string>
 </resources>
